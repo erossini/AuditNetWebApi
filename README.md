@@ -5,6 +5,9 @@
 
 Search for the string `// TODO` on code to see the places where you can customize the audit.
 
+### Swagger
+I have added _Swagger_ in the project. So, it is easy to test instead of using `curl`. 
+
 #### API samples
 
 Description | Command
@@ -16,3 +19,4 @@ Description | Command
 **Delete record** | ```curl -X DELETE http://localhost:50732/api/values/1 -H "content-type: application/json"```
 **Delete multiple records** | ```curl -X DELETE http://localhost:50732/api/values/delete -H "content-type: application/json" -d '"2,3,4"'```
 
+If you have any question, please use my [forum](https://www.puresourcecode.com/forum/) and visit my [blog](https://www.puresourcecode.com).
