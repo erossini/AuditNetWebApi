@@ -42,7 +42,7 @@ namespace Projects.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] string value)
+        public async Task Put(int id, string value)
         {
             await _provider.ReplaceAsync(id, value);
         }
@@ -57,7 +57,7 @@ namespace Projects.Controllers
         // DELETE api/values/delete
         [HttpDelete]
         [Route("delete")]
-        public async Task<ActionResult<bool>> Delete([FromBody] string ids)
+        public async Task<ActionResult<bool>> Delete(string ids)
         {
             return Ok(await _provider.DeleteMultipleAsync(ids.Split(',').Select(s => int.Parse(s)).ToArray()));
         }
