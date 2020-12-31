@@ -14,6 +14,7 @@ namespace Projects
 {
     public class Startup
     {
+        private string connString = "Data Source=nl1-wsq1.a2hosting.com;Initial Catalog=forumpur_fortests;Integrated Security=False;User ID=forumpur_tests;Password=Enrico!1975*;Connect Timeout=60;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultipleActiveResultSets=true;MultiSubnetFailover=False";
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -28,7 +29,7 @@ namespace Projects
             services.AddTransient<IValuesProvider, ValuesProvider>();
 
             // TODO: Configure your context connection
-            services.AddDbContext<MyContext>(_ => _.UseInMemoryDatabase("default"));
+            services.AddDbContext<MyContext>(_ => _.UseSqlServer(connString));
             services
                 .ConfigureAudit()
                 .AddMvc(options => 

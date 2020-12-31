@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Audit.WebApi;
 using Projects.Providers.Database;
+using Audit.SqlServer.Providers;
+using Audit.SqlServer;
+using System.Collections.Generic;
 
 namespace Projects
 {
@@ -34,9 +37,18 @@ namespace Projects
         {
             // TODO: Configure the audit data provider and options. For more info see https://github.com/thepirat000/Audit.NET#data-providers.
             Audit.Core.Configuration.Setup()
-                .UseFileLogProvider(_ => _
-                    .Directory(@"C:\Temp")
-                    .FilenameBuilder(ev => $"{ev.StartDate:yyyyMMddHHmmssffff}_{ev.CustomFields[CorrelationIdField]?.ToString().Replace(':', '_')}.json"))
+                    .UseSqlServer(config => config
+                        .ConnectionString("Data Source=nl1-wsq1.a2hosting.com;Initial Catalog=forumpur_fortests;Integrated Security=False;User ID=forumpur_tests;Password=Enrico!1975*;Connect Timeout=60;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultipleActiveResultSets=true;MultiSubnetFailover=False")
+                        .Schema("dbo")
+                        .TableName("Event")
+                        .IdColumnName("EventId")
+                        .JsonColumnName("JsonData")
+                        .LastUpdatedColumnName("LastUpdatedDate")
+                        .CustomColumn("EventType", ev => ev.EventType)
+                        .CustomColumn("User", ev => ev.Environment.UserName))
+                //.UseFileLogProvider(_ => _
+                //    .Directory(@"C:\Temp")
+                //    .FilenameBuilder(ev => $"{ev.StartDate:yyyyMMddHHmmssffff}_{ev.CustomFields[CorrelationIdField]?.ToString().Replace(':', '_')}.json"))
                 .WithCreationPolicy(EventCreationPolicy.InsertOnEnd);
 
             // Entity framework audit output configuration
@@ -64,7 +76,6 @@ namespace Projects
         /// </summary>
         public static void UseAuditCorrelationId(this IApplicationBuilder app, IHttpContextAccessor ctxAccesor)
         {
-            
             Configuration.AddCustomAction(ActionType.OnScopeCreated, scope =>
             {
                 var httpContext = ctxAccesor.HttpContext;
