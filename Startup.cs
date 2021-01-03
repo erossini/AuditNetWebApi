@@ -14,7 +14,6 @@ namespace Projects
 {
     public class Startup
     {
-        private string connString = "Data Source=nl1-wsq1.a2hosting.com;Initial Catalog=forumpur_fortests;Integrated Security=False;User ID=forumpur_tests;Password=Enrico!1975*;Connect Timeout=60;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultipleActiveResultSets=true;MultiSubnetFailover=False";
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -25,13 +24,14 @@ namespace Projects
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connString = Configuration.GetValue<string>("ConnectionString");
             services.AddHttpContextAccessor();
             services.AddTransient<IValuesProvider, ValuesProvider>();
 
             // TODO: Configure your context connection
             services.AddDbContext<MyContext>(_ => _.UseSqlServer(connString));
             services
-                .ConfigureAudit()
+                .ConfigureAudit(connString)
                 .AddMvc(options => 
                 { 
                     options.AddAudit();

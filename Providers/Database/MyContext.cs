@@ -9,6 +9,9 @@ namespace Projects.Providers.Database
         {
         }
 
+        //public DbSet<EventEntry> Event { get; set; }
+
         public DbSet<ValueEntity> Values { get; set; }
+        public DbSet<Audit_ValueEntity> Audit_Values { get; set; }
     }
 }

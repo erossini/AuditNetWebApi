@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Audit.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace Projects.Providers.Database
 {

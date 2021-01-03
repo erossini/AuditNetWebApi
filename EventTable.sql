@@ -1,0 +1,10 @@
+﻿CREATE TABLE [Event]
+(
+    [EventId] BIGINT IDENTITY(1,1) NOT NULL,
+    [InsertedDate] DATETIME NOT NULL DEFAULT(GETUTCDATE()),
+    [LastUpdatedDate] DATETIME NULL,
+    [JsonData] NVARCHAR(MAX) NOT NULL,
+    [EventType] NVARCHAR(100) NOT NULL,
+    [User] NVARCHAR(100) NOT NULL,
+    CONSTRAINT PK_Event PRIMARY KEY (EventId)
+)
