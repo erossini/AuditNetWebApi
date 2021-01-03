@@ -61,7 +61,6 @@ namespace Projects
             //        .CustomColumn("EventType", ev => ev.EventType)
             //        .CustomColumn("User", ev => ev.Environment.UserName));
 
-            // Entity framework audit output configuration
             //Audit.EntityFramework.Configuration.Setup()
             //    .ForContext<MyContext>(_ => _
             //        .AuditEventType("EF:{context}"))
