@@ -1,6 +1,11 @@
 # Audit.NET WebApi
 
-How to implement an efficient _audit_ system with [C#](https://www.puresourcecode.com/category/dotnet/csharp/) and [Entity Framework Core](https://www.puresourcecode.com/tag/entity-framework-core/)? I have talked about Entity Framework in my previous posts:
+How to implement an efficient _audit_ system with [C#](https://www.puresourcecode.com/category/dotnet/csharp/) and [Entity Framework Core](https://www.puresourcecode.com/tag/entity-framework-core/)? 
+
+## Structure of the audit tables
+![Audit in action](https://www.puresourcecode.com/wp-content/uploads/2021/01/audit-entity-framework-core.png)
+
+I have talked about Entity Framework in my previous posts:
 
 *   [Creating A Model For An Existing Database](https://www.puresourcecode.com/dotnet/net-core/creating-a-model-for-an-existing-database-in-entity-framework-core/)
 *   [Entity Framework Core And Calling A Stored Procedure](https://www.puresourcecode.com/dotnet/net-core/entity-framework-core-and-calling-a-stored-procedure/)
