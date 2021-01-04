@@ -1,4 +1,4 @@
-# Audit.NET WebApi
+# Implementation of an audit strategy with C# and Audit.NET
 
 How to implement an efficient _audit_ system with [C#](https://www.puresourcecode.com/category/dotnet/csharp/) and [Entity Framework Core](https://www.puresourcecode.com/tag/entity-framework-core/)? 
 
