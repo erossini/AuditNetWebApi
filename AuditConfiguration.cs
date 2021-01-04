@@ -41,6 +41,7 @@ namespace Projects
             Audit.Core.Configuration.Setup()
                 .UseEntityFramework(ef => ef.AuditTypeExplicitMapper(m => m
                     .Map<ValueEntity, Audit_ValueEntity>()
+                    .Map<ContactEntity, Audit_ContactEntity>()
                     // add more .Map<TableEntity, Audit_TableEntity>()
                     .AuditEntityAction<IAudit>((evt, entry, auditEntity) =>
                     {

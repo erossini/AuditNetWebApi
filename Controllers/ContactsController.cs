@@ -4,45 +4,46 @@ using System.Linq;
 using System.Threading.Tasks;
 using Projects.Providers;
 using Microsoft.AspNetCore.Mvc;
+using Projects.Providers.Database;
 
 namespace Projects.Controllers
 {
     
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ContactsController : ControllerBase
     {
-        private IValuesProvider _provider;
+        private IContactsProvider _provider;
 
-        public ValuesController(IValuesProvider provider)
+        public ContactsController(IContactsProvider provider)
         {
             _provider = provider;
         }
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<ContactEntity>> Get()
         {
             return Ok(_provider.GetValues());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<string>> Get(int id)
+        public async Task<ActionResult<ContactEntity>> Get(int id)
         {
             return Ok(await _provider.GetAsync(id));
         }
 
         // POST api/values
         [HttpPost]
-        public async Task<ActionResult<int>> Post(string value)
+        public async Task<ActionResult<int>> Post(ContactEntity value)
         {
             return Ok(await _provider.InsertAsync(value));
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task Put(int id, string value)
+        public async Task Put(int id, ContactEntity value)
         {
             await _provider.ReplaceAsync(id, value);
         }
@@ -59,7 +60,7 @@ namespace Projects.Controllers
         [Route("delete")]
         public async Task<ActionResult<bool>> Delete(string ids)
         {
-            return Ok(await _provider.DeleteMultipleAsync(ids.Split(',').Select(s => int.Parse(s)).ToArray()));
+            return Ok(await _provider.DeleteMultipleAsync(ids.Split(',').Select(s => long.Parse(s)).ToArray()));
         }
     }
 }

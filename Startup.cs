@@ -27,6 +27,7 @@ namespace Projects
             string connString = Configuration.GetValue<string>("ConnectionString");
             services.AddHttpContextAccessor();
             services.AddTransient<IValuesProvider, ValuesProvider>();
+            services.AddTransient<IContactsProvider, ContactsProvider>();
 
             // TODO: Configure your context connection
             services.AddDbContext<MyContext>(_ => _.UseSqlServer(connString));
